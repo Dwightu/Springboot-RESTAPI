@@ -1,0 +1,34 @@
+package com.ltp.contacts.service;
+
+import java.util.stream.IntStream;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import com.ltp.contacts.pojo.Contact;
+import com.ltp.contacts.repository.ContactRepository;
+
+@Repository
+public class ContactServiceImpl implements ContactService {
+
+    @Autowired
+    private ContactRepository contactRepository;
+    
+    public ContactServiceImpl(){
+        System.out.println("Created the contact service implementation");
+    }
+
+    @Override
+    public Contact getContactById(String id) {
+        // TODO Auto-generated method stub
+        return contactRepository.getContact(findIndexById(id));
+    }
+
+    private int findIndexById(String id) {
+        return IntStream.range(0, contactRepository.getContacts().size())
+            .filter(index -> contactRepository.getContacts().get(index).getId().equals(id))
+            .findFirst()
+            .orElseThrow();
+    }
+
+}
