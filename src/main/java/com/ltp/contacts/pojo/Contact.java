@@ -17,6 +17,7 @@ public class Contact {
 
     public Contact() {
         this.id = UUID.randomUUID().toString();
+        System.out.println(this.id);
     }
 
     public String getName() {
