@@ -36,6 +36,13 @@ public class ContactServiceImpl implements ContactService {
         // TODO Auto-generated method stub
         contactRepository.updateContact(findIndexById(id), contact);
     }
+
+    @Override
+    public void deleteContact(String id) {
+        // TODO Auto-generated method stub
+        contactRepository.deleteContact(findIndexById(id));
+        
+    }
     private int findIndexById(String id) {
         return IntStream.range(0, contactRepository.getContacts().size())
             .filter(index -> contactRepository.getContacts().get(index).getId().equals(id))
